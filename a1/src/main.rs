@@ -6,7 +6,7 @@ fn main() -> io::Result<()> {
     let mut list_one = vec![];
     let mut list_two = vec![];
 
-    let input = File::open("input.txt")?;
+    let input = File::open("inputs/1.txt")?;
     let reader = BufReader::new(input);
 
     for (i, line) in reader.lines().map_while(Result::ok).enumerate() {
