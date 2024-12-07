@@ -1,3 +1,4 @@
+use indicatif::ProgressIterator;
 use std::{
     collections::{HashMap, HashSet},
     fs,
@@ -91,8 +92,7 @@ fn main() {
 
     let mut option_count = 0;
 
-    for (pot_x, pot_y) in potentials {
-        println!("trying ({}, {})", pot_x, pot_y);
+    for (pot_x, pot_y) in potentials.into_iter().progress() {
         matrix[pot_y as usize][pot_x as usize] = '#';
 
         let mut seen_states = HashSet::new();
@@ -125,7 +125,6 @@ fn main() {
         }
 
         if is_loop {
-            println!("LOOP!");
             option_count += 1;
         }
 
