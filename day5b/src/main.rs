@@ -122,8 +122,6 @@ fn main() {
                         }
                     }
 
-                    println!("{:?}", topological_sort);
-
                     sum_of_middle += topological_sort[topological_sort.len() / 2];
                 }
             }
