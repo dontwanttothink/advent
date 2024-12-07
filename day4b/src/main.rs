@@ -55,7 +55,7 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("The total number is {}", count);
+    println!("{}", count);
 
     Ok(())
 }
