@@ -88,7 +88,7 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("\nIn total, {}", count);
+    println!("{}", count);
 
     Ok(())
 }
