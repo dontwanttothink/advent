@@ -66,7 +66,6 @@ fn main() -> io::Result<()> {
     let lines = [horizontal, vertical, downward, upward];
 
     let mut count = 0;
-    let mut processed_count = 0;
     for line in lines {
         let Domain(d_first, d_second) = line.get_domain(width, height);
 
@@ -86,8 +85,6 @@ fn main() -> io::Result<()> {
 
             let match_count = contents.matches(FORW).count() + contents.matches(BACK).count();
             count += match_count;
-            processed_count += 1;
-            println!("{:03}: has {}", processed_count, match_count);
         }
     }
 
