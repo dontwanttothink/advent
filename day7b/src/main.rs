@@ -11,7 +11,7 @@ fn is_possibly_true(result: i64, nums: &[i64]) -> bool {
     }
 
     let last_i = nums.len() - 1;
-    let last_denary_digits = nums[last_i].checked_ilog10().unwrap();
+    let last_denary_digits = nums[last_i].ilog10();
     let place_value_factor = 10_i64.pow(last_denary_digits + 1);
 
     is_possibly_true(result - nums[last_i], &nums[..last_i])
