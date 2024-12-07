@@ -1,4 +1,5 @@
-use indicatif::ProgressIterator;
+use indicatif::ProgressBar;
+use rayon::prelude::*;
 use std::{
     collections::{HashMap, HashSet},
     fs,
@@ -57,7 +58,7 @@ struct GuardState {
 fn main() {
     let input = fs::read_to_string("inputs/6.txt").unwrap();
 
-    let mut matrix: Vec<Vec<char>> = input.lines().map(|n| n.chars().collect()).collect();
+    let matrix: Vec<Vec<char>> = input.lines().map(|n| n.chars().collect()).collect();
 
     let height: i64 = matrix.len().try_into().unwrap();
     let width: i64 = matrix[0].len().try_into().unwrap();
@@ -90,46 +91,49 @@ fn main() {
 
     potentials.remove(&initial_position);
 
-    let mut option_count = 0;
+    let bar = ProgressBar::new(potentials.len() as u64);
 
-    for (pot_x, pot_y) in potentials.into_iter().progress() {
-        matrix[pot_y as usize][pot_x as usize] = '#';
+    let option_count = potentials
+        .into_par_iter()
+        .map(|new_obstacle| {
+            let mut seen_states = HashSet::new();
 
-        let mut seen_states = HashSet::new();
+            let mut current_position = initial_position;
+            let mut current_direction = Direction::North;
 
-        let mut current_position = initial_position;
-        let mut current_direction = Direction::North;
+            let mut is_loop = false;
 
-        let mut is_loop = false;
+            while within_bounds(current_position, width, height) {
+                let current_state = GuardState {
+                    direction: current_direction,
+                    position: current_position,
+                };
 
-        while within_bounds(current_position, width, height) {
-            let current_state = GuardState {
-                direction: current_direction,
-                position: current_position,
-            };
+                if seen_states.contains(&current_state) {
+                    is_loop = true;
+                    break;
+                }
+                seen_states.insert(current_state);
 
-            if seen_states.contains(&current_state) {
-                is_loop = true;
-                break;
+                let forward = move_to(&current_direction, current_position);
+                if within_bounds(forward, width, height)
+                    && (matrix[forward.1 as usize][forward.0 as usize] == '#'
+                        || new_obstacle == forward)
+                {
+                    current_direction.rotate();
+                } else {
+                    current_position = forward;
+                }
             }
-            seen_states.insert(current_state);
 
-            let forward = move_to(&current_direction, current_position);
-            if within_bounds(forward, width, height)
-                && matrix[forward.1 as usize][forward.0 as usize] == '#'
-            {
-                current_direction.rotate();
-            } else {
-                current_position = forward;
-            }
-        }
+            bar.inc(1);
 
-        if is_loop {
-            option_count += 1;
-        }
+            is_loop
+        })
+        .filter(|&l| l)
+        .count();
 
-        matrix[pot_y as usize][pot_x as usize] = '.';
-    }
+    bar.finish();
 
     println!("{} options", option_count);
 }
