@@ -37,7 +37,7 @@ fn main() -> io::Result<()> {
         similarity += i * list_two.get(&i).unwrap_or(&0);
     }
 
-    println!("{}", similarity);
+    println!("An overall similarity of {}", similarity);
 
     Ok(())
 }

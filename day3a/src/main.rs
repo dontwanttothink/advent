@@ -20,7 +20,7 @@ fn main() -> io::Result<()> {
         sum += first * second;
     }
 
-    println!("{}", sum);
+    println!("A product sum of {}", sum);
 
     Ok(())
 }

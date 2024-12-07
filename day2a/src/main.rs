@@ -21,6 +21,6 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("{}", count);
+    println!("{} safe reports", count);
     Ok(())
 }

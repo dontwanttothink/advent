@@ -23,7 +23,7 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("{}", sum);
+    println!("A revised product sum of {}", sum);
 
     Ok(())
 }

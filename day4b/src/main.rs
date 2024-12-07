@@ -55,7 +55,7 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("{}", count);
+    println!("{} instances of cross-MAS!", count);
 
     Ok(())
 }

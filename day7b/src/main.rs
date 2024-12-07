@@ -58,5 +58,8 @@ fn main() {
         })
         .sum();
 
-    println!("{}", calibration_result);
+    println!(
+        "A revised total calibration result of {}",
+        calibration_result
+    );
 }

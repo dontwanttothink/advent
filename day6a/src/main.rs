@@ -68,5 +68,5 @@ fn main() {
         }
     }
 
-    println!("{}", seen.len());
+    println!("{} positions", seen.len());
 }

@@ -88,7 +88,7 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("{}", count);
+    println!("{} instances of XMAS!", count);
 
     Ok(())
 }

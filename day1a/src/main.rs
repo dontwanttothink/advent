@@ -39,7 +39,7 @@ fn main() -> io::Result<()> {
         difference += (first - second).abs();
     }
 
-    println!("{}", difference);
+    println!("An overall difference of {}", difference);
 
     Ok(())
 }

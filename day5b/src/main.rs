@@ -128,5 +128,5 @@ fn main() {
         }
     }
 
-    println!("{}", sum_of_middle);
+    println!("Rearranged, a middle-page-sum of {}", sum_of_middle);
 }

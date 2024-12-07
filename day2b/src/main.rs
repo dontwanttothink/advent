@@ -100,6 +100,6 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("{}", count);
+    println!("{} tolerable reports", count);
     Ok(())
 }
