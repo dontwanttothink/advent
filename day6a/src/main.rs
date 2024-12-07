@@ -56,10 +56,7 @@ fn main() {
     let mut current_position = get_guard_position(&matrix);
 
     while within_bounds(current_position, width, height) {
-        if !seen.contains(&current_position) {
-            println!("seen {:?}", current_position);
-            seen.insert(current_position);
-        }
+        seen.insert(current_position);
 
         let forward = move_to(&current_direction, current_position);
         if within_bounds(forward, width, height) && matrix[forward.1][forward.0] == '#' {
