@@ -21,8 +21,8 @@ fn is_possibly_true(result: i64, nums: &[i64]) -> bool {
                 (result - nums[last_i]) / place_value_factor,
                 &nums[..last_i],
             ))
-    // the concatenation operator is the same as multiplying the whole thing by 10^(floor(log10(nums[last_i])) + 1)
-    // and adding nums[last_i].
+    // the concatenation operator is the same as multiplying the whole thing by
+    // 10^(floor(log10(nums[last_i])) + 1) and adding nums[last_i].
 }
 
 fn main() {
