@@ -15,6 +15,6 @@ members = [
     "day6b-slow",
     "day7a",
     "day7b",
-    "day8a",
+    "day8a", "day8b",
 ]
 resolver = "2"
