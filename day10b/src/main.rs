@@ -4,7 +4,7 @@ fn get_neighbors((x, y): (i64, i64)) -> [(i64, i64); 4] {
     [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
 }
 
-fn lies_inside((x, y): (i64, i64), matrix: &Vec<Vec<i64>>) -> bool {
+fn lies_inside((x, y): (i64, i64), matrix: &[Vec<i64>]) -> bool {
     let height: i64 = matrix.len().try_into().unwrap();
     let width: i64 = matrix[0].len().try_into().unwrap();
     (0..width).contains(&x) && (0..height).contains(&y)
@@ -43,11 +43,7 @@ fn main() {
     let input = fs::read_to_string("inputs/10.txt").expect("Failed to read input");
     let matrix: Vec<Vec<i64>> = input
         .lines()
-        .map(|n| {
-            n.chars()
-                .map(|c| c.to_digit(10).unwrap().try_into().unwrap())
-                .collect()
-        })
+        .map(|n| n.chars().map(|c| c.to_digit(10).unwrap().into()).collect())
         .collect();
 
     let mut trailheads = vec![];
