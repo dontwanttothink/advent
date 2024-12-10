@@ -79,5 +79,5 @@ fn main() {
         checksum += i * item;
     }
 
-    println!("A checksum of {}", checksum);
+    println!("A revised checksum of {}", checksum);
 }
