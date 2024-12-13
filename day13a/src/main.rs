@@ -18,8 +18,6 @@ struct Machine {
 
 impl Machine {
     fn min_tokens_needed(&self) -> Option<i64> {
-        println!("");
-
         let mut matrix = [
             [
                 Rational::from(self.a_button.0),
