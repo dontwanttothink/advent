@@ -1,5 +1,5 @@
 [workspace]
-members = [ "day10a", "day10b", "day11a", "day11b", "day12a", "day12b", "day13a", "day13b", "day14a",
+members = [ "day10a", "day10b", "day11a", "day11b", "day12a", "day12b", "day13a", "day13b", "day14a", "day14b",
     "day1a",
     "day1b",
     "day2a",
