@@ -24,7 +24,7 @@ fn throw_ray(
         current = (current.0 + step.0, current.1 + step.1);
         if (0..height).contains(&current.1)
             && (0..width).contains(&current.0)
-            && (matrix[current.1 as usize][current.0 as usize] == None)
+            && matrix[current.1 as usize][current.0 as usize].is_none()
         {
             out = Some(current);
         }
@@ -70,24 +70,21 @@ fn main() {
         })
         .collect();
 
-    let movements = movements_str
-        .lines()
-        .map(|l| {
-            l.chars().map(|c| {
-                if c == '^' {
-                    (0, -1)
-                } else if c == '<' {
-                    (-1, 0)
-                } else if c == '>' {
-                    (1, 0)
-                } else if c == 'v' {
-                    (0, 1)
-                } else {
-                    panic!("Invalid movement found")
-                }
-            })
+    let movements = movements_str.lines().flat_map(|l| {
+        l.chars().map(|c| {
+            if c == '^' {
+                (0, -1)
+            } else if c == '<' {
+                (-1, 0)
+            } else if c == '>' {
+                (1, 0)
+            } else if c == 'v' {
+                (0, 1)
+            } else {
+                panic!("Invalid movement found")
+            }
         })
-        .flatten();
+    });
 
     let height = matrix.len().try_into().unwrap();
     let width = matrix[0].len().try_into().unwrap();
@@ -112,7 +109,7 @@ fn main() {
         let maybe_new_pos = (current_position.0 + step.0, current_position.1 + step.1);
         if (0..height).contains(&maybe_new_pos.1)
             && (0..width).contains(&maybe_new_pos.0)
-            && matrix[maybe_new_pos.1 as usize][maybe_new_pos.0 as usize] == None
+            && matrix[maybe_new_pos.1 as usize][maybe_new_pos.0 as usize].is_none()
         {
             current_position = maybe_new_pos;
         }

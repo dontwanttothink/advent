@@ -30,9 +30,9 @@ fn search_from(
             let (o_x, o_y) = origin;
             for neighbor in get_neighbors(origin) {
                 let (n_x, n_y) = neighbor;
-                if !((0..width).contains(&n_x) && (0..height).contains(&n_y)) {
-                    perimeter += 1;
-                } else if matrix[n_y as usize][n_x as usize] != matrix[o_y as usize][o_x as usize] {
+                if !((0..width).contains(&n_x) && (0..height).contains(&n_y))
+                    || matrix[n_y as usize][n_x as usize] != matrix[o_y as usize][o_x as usize]
+                {
                     perimeter += 1;
                 } else if !seen.contains(&neighbor) {
                     new_to_explore.push(neighbor);

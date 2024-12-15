@@ -31,9 +31,9 @@ fn search_from(
             area += 1;
             for neighbor in get_neighbors(origin) {
                 let (n_x, n_y) = neighbor;
-                if !((0..width).contains(&n_x) && (0..height).contains(&n_y)) {
-                    peripheric_pots.insert(origin);
-                } else if matrix[n_y as usize][n_x as usize] != pot_type {
+                if !((0..width).contains(&n_x) && (0..height).contains(&n_y))
+                    || matrix[n_y as usize][n_x as usize] != pot_type
+                {
                     peripheric_pots.insert(origin);
                 } else if !seen.contains(&neighbor) {
                     new_to_explore.push(neighbor);

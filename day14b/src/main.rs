@@ -83,11 +83,11 @@ fn main() {
 
         println!("\nAfter {} seconds:", elapsed_seconds);
 
-        for y in 0..HEIGHT as usize {
-            for x in 0..WIDTH as usize {
-                print!("{}", if matrix[x][y] == 0 { ' ' } else { '█' })
+        for row in &matrix {
+            for freq in row {
+                print!("{}", if *freq == 0 { ' ' } else { '█' })
             }
-            println!("");
+            println!();
         }
 
         let confirmation = Confirm::new()
