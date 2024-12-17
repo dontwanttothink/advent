@@ -1,3 +1,8 @@
+// I think this might be buggy? I don't know, but, even though it produced the right answer for my
+// input data, I saw some weird behavior when I tried to adapt this solution exactly for part B,
+// which led me to rewriting the way the nodes that are visited by the Dijkstra are calculated.
+// So!
+
 use std::{
     cmp::Ordering,
     collections::{BTreeSet, HashMap, HashSet},
